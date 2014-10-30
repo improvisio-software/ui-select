@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.9.0 - 2014-10-30T08:33:46.306Z
+ * Version: 0.9.1 - 2014-10-30T09:09:11.780Z
  * License: MIT
  */
 
@@ -201,8 +201,7 @@
         // Give it time to appear before focus
         $timeout(function() {
           ctrl.search = initSearchValue || ctrl.search;
-          var navigator = navigator || {userAgent: ''};
-          if (navigator.userAgent.match(/Mobi/)) {
+          if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent)) {
             _searchInput[0].focus();
           }
         });

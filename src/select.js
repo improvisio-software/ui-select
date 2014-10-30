@@ -193,8 +193,7 @@
         // Give it time to appear before focus
         $timeout(function() {
           ctrl.search = initSearchValue || ctrl.search;
-          var navigator = navigator || {userAgent: ''};
-          if (navigator.userAgent.match(/Mobi/)) {
+          if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent)) {
             _searchInput[0].focus();
           }
         });
