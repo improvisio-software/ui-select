@@ -197,7 +197,7 @@
         ctrl.activeIndex = ctrl.activeIndex >= ctrl.items.length ? 0 : ctrl.activeIndex;
 
         // Give it time to appear before focus
-        $timeout(function() {
+        $scope.$evalAsync(function() {
           ctrl.search = initSearchValue || ctrl.search;
           if (!isMobile()) {
             _searchInput[0].focus();
@@ -362,10 +362,10 @@
       _resetSearchInput();
       ctrl.open = false;
       if (!ctrl.multiple){
-        $timeout(function(){
+        $scope.$evalAsync(function(){
           ctrl.focusser.prop('disabled', false);
           if (!skipFocusser) ctrl.focusser[0].focus();
-        },0,false);
+        });
       }
     };
 
@@ -408,7 +408,7 @@
         if(newWidth < 50) newWidth = container.clientWidth;
         _searchInput.css('width',newWidth+'px');
       };
-      $timeout(function(){ //Give tags time to render correctly
+      $scope.$evalAsync(function(){ //Give tags time to render correctly
         if (container.clientWidth === 0 && !containerSizeWatch){
           containerSizeWatch = $scope.$watch(function(){ return container.clientWidth;}, function(newValue){
             if (newValue !== 0){
@@ -420,7 +420,7 @@
         }else if (!containerSizeWatch) {
           calculate();
         }
-      }, 0, false);
+      });
     };
 
     function _handleDropDownSelection(key) {
@@ -549,7 +549,7 @@
     });
 
     _searchInput.on('blur', function() {
-      $timeout(function() {
+      $scope.$evalAsync(function() {
         ctrl.activeMatchIndex = -1;
       });
     });
